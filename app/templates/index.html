@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>图书列表</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #f2f2f2;
+      padding: 40px;
+      color: #333;
+    }
+
+    h2, h3 {
+      color: #2c3e50;
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 500px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      margin: 5px 0 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #27ae60;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      max-width: 600px;
+    }
+
+    li {
+      background-color: #fff;
+      padding: 12px 18px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .book-actions {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>欢迎 {{ session['user'] }}</h2>
+  <a href="{{ url_for('main.logout') }}">退出</a>
+
+  <!-- 添加书籍表单 -->
+  <h3>添加书籍</h3>
+  <form action="{{ url_for('main.add') }}" method="POST">
+    <input type="text" name="title" placeholder="书名" required>
+    <input type="text" name="author" placeholder="作者" required>
+    <button type="submit">添加</button>
+  </form>
+
+  <!-- 搜索表单 -->
+  <h3>查找书籍</h3>
+  <form action="{{ url_for('main.select') }}" method="POST">
+    <input type="text" name="book_or_author" value="{{ search_query or '' }}" placeholder="输入书名或作者" required>
+    <button type="submit">搜索</button>
+  </form>
+
+  <!-- 原始书籍列表 -->
+  <h3>全部书籍</h3>
+  <ul>
+    {% for book in books %}
+    <li>
+      {{ book.title }} -- {{ book.author.name }}
+      <span class="book-actions">
+        <a href="{{ url_for('main.edit', book_id=book.id) }}">编辑</a>
+        <a href="{{ url_for('main.delete', book_id=book.id) }}">删除</a>
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <!-- 搜索结果 -->
+  {% if search_results %}
+  <h3>搜索结果</h3>
+  <ul>
+    {% for book in search_results %}
+    <li>{{ book.title }} -- {{ book.author.name }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+</body>
+</html>

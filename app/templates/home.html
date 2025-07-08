@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书馆系统首页</title>
+    <style>
+        /* 全屏渐变背景 */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #4aa7dd, #c9d7e7); /* 模仿你图像的蓝色渐变 */
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        a button {
+            background-color: white;
+            color: #4aa7dd;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        a button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <strong><h1>Welcome Library System</h1></strong>
+    <a href="{{ url_for('main.login') }}"><button>登录</button></a>
+    <br>
+    <a href="{{ url_for('main.register') }}"><button>注册</button></a>
+</body>
+</html>

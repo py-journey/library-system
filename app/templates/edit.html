@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>编辑书籍</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            padding: 40px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        div {
+            margin-top: 15px;
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <h2>编辑书籍</h2>
+    <form action="{{ url_for('main.edit', book_id=book.id) }}" method="post">
+        书籍：
+        <input type="text" name="title" value="{{ book.title }}" placeholder="请输入书籍">
+        作者：
+        <input type="text" name="author" value="{{ book.author.name }}" placeholder="请输入作者">
+        <button type="submit">保存修改</button>
+    </form>
+
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div>{{ message }}</div>
+    {% endfor %}
+</body>
+</html>

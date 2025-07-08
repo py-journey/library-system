@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>注册页面</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 40px 0 0 0;
+      display: flex;
+      justify-content: center;   /* 水平居中 */
+      align-items: flex-start;   /* 垂直靠上 */
+      min-height: 100vh;
+    }
+    .container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 320px;
+      box-sizing: border-box;
+    }
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    form {
+      width: 100%;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    input[type="text"], input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="password"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    hr {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px solid #ddd;
+    }
+    /* flash消息样式 */
+    .flash-message {
+      background-color: #ffefc1;
+      border: 1px solid #ffd324;
+      color: #856404;
+      padding: 10px 15px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>用户注册</h2>
+    <form action="{{ url_for('main.register') }}" method="post">
+      <label>用户名：</label>
+      <input type="text" name="username" required />
+
+      <label>密码：</label>
+      <input type="password" name="passwd" required />
+
+      <label>确认密码：</label>
+      <input type="password" name="confirm_passwd" required />
+
+      <button type="submit">提交</button>
+      <a href="{{ url_for('main.login') }}">登录</a>
+    </form>
+  </div>
+
+  <hr />
+
+  <!-- 显示flash消息 -->
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+  <div class="flash-message">{{ message }}</div>
+  {% endfor %}
+</body>
+</html>
