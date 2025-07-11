@@ -67,6 +67,17 @@
     .register-link a:hover {
       text-decoration: underline;
     }
+
+    .flash-message {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #ffe9e9;
+      color: #d8000c;
+      border: 1px solid #f5c6cb;
+      border-radius: 6px;
+      font-size: 14px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -81,6 +92,11 @@
         还没有账号？<a href="{{ url_for('main.register') }}">注册</a>
       </div>
     </form>
+
+    <!-- 显示 flash 消息 -->
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+      <div class="flash-message">{{ message }}</div>
+    {% endfor %}
   </div>
 
 </body>

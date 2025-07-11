@@ -125,7 +125,7 @@ def edit(book_id):
         return redirect(url_for('main.index'))
     return render_template('edit.html',book=book)
 
-# select
+# search
 @main.route('/select', methods=['POST'])
 def select():
     bk_or_au = request.form.get('book_or_author', '').strip()
