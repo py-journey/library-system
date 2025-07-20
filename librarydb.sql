@@ -49,17 +49,6 @@ INSERT INTO `author` VALUES (1, 'jack', 23);
 INSERT INTO `author` VALUES (2, 'mary', 25);
 INSERT INTO `author` VALUES (3, 'nick', 26);
 INSERT INTO `author` VALUES (4, 'ikun', 27);
-INSERT INTO `author` VALUES (5, 'wq', NULL);
-INSERT INTO `author` VALUES (6, 'ikum', NULL);
-INSERT INTO `author` VALUES (7, 'wangrong', NULL);
-INSERT INTO `author` VALUES (8, 'abvda', NULL);
-INSERT INTO `author` VALUES (9, '王荣', NULL);
-INSERT INTO `author` VALUES (11, '高斯林', NULL);
-INSERT INTO `author` VALUES (12, 'iu', NULL);
-INSERT INTO `author` VALUES (13, 'sdb', NULL);
-INSERT INTO `author` VALUES (14, 'fgrer', NULL);
-INSERT INTO `author` VALUES (15, 'qew', NULL);
-INSERT INTO `author` VALUES (16, '罗贯中', NULL);
 
 -- ----------------------------
 -- Table structure for book
